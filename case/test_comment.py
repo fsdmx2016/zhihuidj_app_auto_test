@@ -23,7 +23,7 @@ class test_remark(unittest.TestCase):
         cls.driver = base_config.init_driver()
 
     def test_send_report(self):
-        base_operate.enter_home(self)
+        base_operate.enter_home(self.driver)
 
         self.driver.find_element(base_page.tab_zx[0], base_page.tab_zx[1]).click()
         time.sleep(1)
@@ -36,10 +36,3 @@ class test_remark(unittest.TestCase):
         edit_text.send_keys("123123")
         self.driver.find_element(By.XPATH, '//android.view.View[@content-desc="发送"]').click()
 
-    # 点击取消更新-进入首页
-    def enter_home(self):
-        self.driver.find_element(base_page.skip_update[0], base_page.skip_update[1]).click()
-        time.sleep(4)
-
-    def tearDownClass(cls) :
-        cls.driver.close_app()

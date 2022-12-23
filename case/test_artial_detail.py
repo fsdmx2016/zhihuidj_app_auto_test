@@ -22,7 +22,8 @@ class article_detail(unittest.TestCase):
 
      # 进入文章详情
     def test_enter_detail(self):
-        base_operate.enter_home(self)
+        base_operate.enter_home(self.driver)
+
         self.driver.find_element(By.XPATH, '//android.widget.ImageView[@content-desc="资讯"]').click()
         time.sleep(1)
         self.driver.find_element(By.XPATH, '//android.view.View[@content-desc="行业资讯"]').click()

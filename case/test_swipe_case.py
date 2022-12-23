@@ -25,7 +25,4 @@ class Swipe_Case(unittest.TestCase):
     def test_swipe(self):
         base_operate.enter_home(self.driver)
         base_operate.swipe_down(self.driver)
-        base_operate.swipe_right(self.driver)
-
-    def tearDownClass(cls):
-        cls.driver.close_app()
+        base_operate.swip_left(self.driver)

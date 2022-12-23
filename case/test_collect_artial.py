@@ -21,7 +21,7 @@ class test_article_collect(unittest.TestCase):
         cls.driver = base_config.init_driver()
 
     def send_report(self):
-        base_operate.enter_home(self)
+        base_operate.enter_home(self.driver)
 
         self.driver.find_element(base_page.tab_zx[0], base_page.tab_zx[1]).click()
         time.sleep(1)
@@ -30,5 +30,3 @@ class test_article_collect(unittest.TestCase):
         time.sleep(2)
         self.driver.find_elements(By.CLASS_NAME, 'android.widget.ImageView')[1].click()
 
-    def tearDownClass(cls):
-        cls.driver.close_app()

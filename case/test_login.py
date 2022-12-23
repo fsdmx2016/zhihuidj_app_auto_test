@@ -22,12 +22,13 @@ class Test_Login(unittest.TestCase):
         cls.driver = base_config.init_driver()
 
     def test_login(self):
-        base_operate.enter_home(self)
+        base_operate.enter_home(self.driver)
 
         self.driver.find_element(By.XPATH, '//android.widget.ImageView[@content-desc="登录"]').click()
         time.sleep(1)
         if base_operate.is_element_exist(self.driver, '一键登录'):
             self.driver.find_element(By.XPATH, '//*[@resource-id="com.zhihuidanji.smarterlayer:id/title"]').click()
+        time.sleep(3)
         self.driver.find_element(By.XPATH, '//android.widget.ImageView[contains(@index,7)]').click()
         time.sleep(1)
         user_name = self.driver.find_element(By.XPATH, '//android.widget.EditText[contains(@index,1)]')
@@ -39,5 +40,3 @@ class Test_Login(unittest.TestCase):
             '123456')
         self.driver.find_element(By.XPATH, '//android.widget.ImageView[contains(@index,3)]').click()
 
-    def tearDownClass(cls):
-        cls.driver.close_app()

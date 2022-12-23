@@ -10,7 +10,7 @@ import os
 
 from appium.webdriver import Remote
 
-apk_path = os.path.abspath(os.path.split(os.path.abspath(os.path.realpath(__file__)))[0] + "/../apks/智慧蛋鸡_2.8.2.apk")
+apk_path = '/Users/sunpeng/Desktop/智慧蛋鸡_2.8.2.apk'
 
 
 def init_driver():

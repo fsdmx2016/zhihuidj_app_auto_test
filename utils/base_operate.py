@@ -28,23 +28,14 @@ def swipe_down(driver):
     time.sleep(1)
 
 
-def swipe_right(driver):
-    # 往下滑动
-    l = getSize(driver)
-    x1 = int(l[0] * 0.3)
-    y1 = int(l[0] * 0.73)
-    y2 = int(l[0] * 0.15)
-    x2 = int(l[0] * 0.3)
-    driver.swipe(x1, y1, x2, y2, 1000)
-    time.sleep(1)
 
-def swip_left(self):
-    l = self.get_size()
+def swip_left(driver):
+    l = getSize(driver)
     x1 = int(l[0] * 0.75)
     x2 = int(l[0] * 0.25)
     y1 = int(l[0] * 0.3)
     y2 = int(l[0] * 0.3)
-    self.driver.swipe(x1, x2, y1, y2, 1000)
+    driver.swipe(x1, x2, y1, y2, 1000)
     time.sleep(1)
 def getSize(driver):
     x = driver.get_window_size()['width']
@@ -53,8 +44,8 @@ def getSize(driver):
 
 
 def enter_home(driver):
-    if is_element_exist(driver, '同意'):
-        driver.find_element(By.ID, 'm_tv_right').click()
+    # if is_element_exist(driver, '同意'):
+    #     driver.find_element(By.ID, 'm_tv_right').click()
     driver.find_element(base_page.skip_update[0], base_page.skip_update[1]).click()
     time.sleep(4)
 
