@@ -23,7 +23,6 @@ class Video_Case(unittest.TestCase):
     # 视频类型进入到视频详情页播放
     def test_video_lock(self):
         base_operate.enter_home(self.driver)
-
         self.driver.find_element(By.XPATH, '//android.widget.ImageView[@content-desc="交易"]').click()
         time.sleep(1)
         # 滑动两次保证元素被找到
