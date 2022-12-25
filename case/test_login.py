@@ -8,11 +8,9 @@
 """
 import os
 import time
-
 from base import base_config
 import unittest
 from selenium.webdriver.common.by import By
-from page import base_page
 from utils import base_operate
 
 
@@ -31,7 +29,7 @@ class Test_Login(unittest.TestCase):
         time.sleep(3)
         self.driver.find_element(By.XPATH, '//android.widget.ImageView[contains(@index,7)]').click()
         time.sleep(1)
-        user_name = self.driver.find_element(By.XPATH, '//android.widget.EditText[contains(@index,1)]')
+        user_name = self.driver.find_element(By.XPATH, '//android.widget.EditText[@text="请输入手机号"]')
         user_name.click()
         os.system('adb shell input text {}'.format('13699103657'))
         password = self.driver.find_element(By.XPATH, '//android.widget.EditText[@text="请输入密码"]')
