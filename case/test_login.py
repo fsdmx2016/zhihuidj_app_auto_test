@@ -15,14 +15,17 @@ from utils import base_operate
 
 
 # 登录
+
+
 class Test_Login(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = base_config.init_driver()
-        base_operate.base_login(cls.driver)
 
     def test_login(self):
         try:
+            base_operate.enter_home(self.driver)
+
             self.driver.find_element(By.XPATH, '//android.widget.ImageView[@content-desc="登录"]').click()
             time.sleep(1)
             if base_operate.is_element_exist(self.driver, '一键登录'):
