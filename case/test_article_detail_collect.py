@@ -10,7 +10,6 @@ import time
 
 from base import base_config
 import unittest
-from selenium.webdriver.common.by import By
 from page import base_page, zx_page
 from utils import base_operate
 
@@ -30,6 +29,7 @@ class article_detail(unittest.TestCase):
             time.sleep(1)
             self.driver.find_element(zx_page.hy_zixun[0], zx_page.hy_zixun[1]).click()
             time.sleep(2)
+
             self.driver.find_element(zx_page.collect[0], zx_page.collect[1]).click()
         finally:
             self.driver.close_app()

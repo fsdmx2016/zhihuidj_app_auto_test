@@ -10,7 +10,8 @@ import os
 
 from selenium.webdriver.common.by import By
 
-from base import base_config
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 import time
 
@@ -45,13 +46,16 @@ def getSize(driver):
     return (x, y)
 
 
+# 跳过检查更新，进入首页
 def enter_home(driver):
     if is_element_exist(driver, '同意'):
         driver.find_element(By.ID, 'm_tv_right').click()
-    driver.find_element(base_page.skip_update[0], base_page.skip_update[1]).click()
+    if is_element_exist(driver, '下次再说'):
+        driver.find_element(base_page.skip_update[0], base_page.skip_update[1]).click()
     time.sleep(4)
 
 
+# 前置登录
 def base_login(driver):
     enter_home(driver)
     # 如果登录按钮存在,则登录账号
@@ -78,9 +82,15 @@ def base_login(driver):
             driver.find_element(login_page.login_btn[0], login_page.login_btn[1]).click()
 
 
+# 判断元素是否存在
 def is_element_exist(driver, element):
     source = driver.page_source
     if element in source:
         return True
     else:
         return False
+
+# 等待元素出现，默认等待5s
+def wait_element_appear(driver, search_type, search_value):
+    WebDriverWait(driver, 5).until(
+        EC.presence_of_element_located((search_type, search_value)))

@@ -6,12 +6,9 @@
 @Date    :  2022/12/18 10:44
 @Desc    :
 """
-import time
-
 from base import base_config
 import unittest
-from selenium.webdriver.common.by import By
-from page import base_page
+
 
 # 滑动
 from utils import base_operate
