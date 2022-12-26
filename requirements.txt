@@ -1,2 +1,4 @@
 Appium_Python_Client==2.7.1
+configobj==5.0.6
 selenium==4.7.2
+unittestreport==1.5.1

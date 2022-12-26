@@ -1,16 +1,30 @@
-# This is a sample Python script.
+import os
+import unittest
+# 一定要导入，要不然报错
+import time
+from unittestreport import TestRunner
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+# 获取到测试用例的路径
+path = os.path.abspath(os.path.dirname(__file__)) + '/case'
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def run_unittest_case():
+    suite = unittest.defaultTestLoader.discover(path)
+    now = time.strftime("%Y-%m-%d %H_%M_%S", time.localtime())
+    curPath = os.path.abspath(os.path.dirname(__file__))
+    filename = curPath + "/reports/" + now + "_result.html"
+    # 用例执行
+    runner = TestRunner(suite,
+                        filename=filename,
+                        title="自动化测试报告",
+                        report_dir=curPath + "/reports/",
+                        templates=1,
+                        desc="app自动化测试报告",
+                        tester="系统定时触发"
+                        )
+    runner.run()
 
 
-# Press the green button in the gutter to run the script.
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    run_unittest_case()

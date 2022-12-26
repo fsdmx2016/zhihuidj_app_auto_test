@@ -6,40 +6,36 @@
 @Date    :  2022/12/23 10:22
 @Desc    :
 """
-import os
 import time
 
 from base import base_config
 import unittest
 from selenium.webdriver.common.by import By
-from page import base_page
-
-# 文章评论
+from page import base_page, zx_page
 from utils import base_operate
-from page import zx_page
+
+
+# 分享到第三方平台
 from utils.base_operate import is_element_exist
 
 
-class test_remark(unittest.TestCase):
+class test_article_share(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = base_config.init_driver()
+        base_operate.base_login(cls.driver)
 
-    def test_send_report(self):
+    def test_share_article(self):
         try:
-            base_operate.enter_home(self.driver)
             self.driver.find_element(base_page.tab_zx[0], base_page.tab_zx[1]).click()
             time.sleep(1)
+            base_operate.swipe_down(self.driver)
+
             self.driver.find_element(zx_page.hot_list[0], zx_page.hot_list[1]).find_element(
                 zx_page.hot_list_first[0], zx_page.hot_list_first[1]).click()
             time.sleep(2)
-            edit_text = self.driver.find_element(zx_page.reply[0], zx_page.reply[1])
-            edit_text.click()
-            current_time = str(time.time())
-            os.system('adb shell input text {}'.format(current_time))
-            time.sleep(1)
-            self.driver.find_element(zx_page.send[0], zx_page.send[1]).click()
-            time.sleep(1)
-            assert is_element_exist(self.driver, current_time), True
+            self.driver.find_elements(zx_page.share_btn[0], zx_page.share_btn[1])[1].click()
+            time.sleep(3)
+            assert is_element_exist(self.driver, '分享/收藏'), True
         finally:
             self.driver.close_app()
