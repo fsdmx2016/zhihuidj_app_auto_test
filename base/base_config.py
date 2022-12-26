@@ -10,8 +10,7 @@ import os
 
 from appium.webdriver import Remote
 from config import read_config
-
-apk_path = '/Users/sunpeng/Desktop/智慧蛋鸡_2.8.2.apk'
+apk_path = r"/Users/sunpeng/Desktop/zhdj_2.8.2.apk"
 platformVersion = read_config.ReadConfig.get_data('device1', 'platformVersion')
 deviceName = read_config.ReadConfig.get_data('device1', 'deviceName')
 appPackage = read_config.ReadConfig.get_data('device1', 'appPackage')
@@ -24,7 +23,7 @@ def init_driver():
     dict['platformVersion'] = platformVersion
     dict['deviceName'] = deviceName
     dict['app'] = apk_path
-    dict['automationName'] = 'UIAutomator2'
+    # dict['automationName'] = 'UIAutomator2'
     dict['noReset'] = True
     dict[
         'appPackage'] = appPackage

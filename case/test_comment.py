@@ -37,6 +37,7 @@ class test_remark(unittest.TestCase):
             edit_text.click()
             current_time = str(time.time())
             os.system('adb shell input text {}'.format(current_time))
+            edit_text.send_keys('123123')
             time.sleep(1)
             self.driver.find_element(zx_page.send[0], zx_page.send[1]).click()
             time.sleep(1)
