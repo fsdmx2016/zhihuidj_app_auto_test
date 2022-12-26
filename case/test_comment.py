@@ -27,19 +27,19 @@ class test_remark(unittest.TestCase):
 
     def test_send_report(self):
         try:
-            base_operate.enter_home(self.driver)
-            self.driver.find_element(base_page.tab_zx[0], base_page.tab_zx[1]).click()
+            # 点击资讯tab
+            base_operate.click_element(self.driver, base_page.tab_zx)
             time.sleep(1)
-            self.driver.find_element(zx_page.hot_list[0], zx_page.hot_list[1]).find_element(
-                zx_page.hot_list_first[0], zx_page.hot_list_first[1]).click()
+            base_operate.click_elements(self.driver,zx_page.hot_list,zx_page.hot_list_first)
             time.sleep(2)
-            edit_text = self.driver.find_element(zx_page.reply[0], zx_page.reply[1])
+            # 点击评论输入框
+            edit_text=base_operate.get_element(self.driver, zx_page.reply)
             edit_text.click()
             current_time = str(time.time())
             os.system('adb shell input text {}'.format(current_time))
             edit_text.send_keys('123123')
             time.sleep(1)
-            self.driver.find_element(zx_page.send[0], zx_page.send[1]).click()
+            base_operate.click_element(self.driver, zx_page.send)
             time.sleep(1)
             assert is_element_exist(self.driver, current_time), True
         finally:

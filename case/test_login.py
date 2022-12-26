@@ -25,27 +25,28 @@ class Test_Login(unittest.TestCase):
     def test_login(self):
         try:
             if base_operate.is_element_exist(self.driver, '登录'):
-                self.driver.find_element(base_page.login_btn[0], base_page.login_btn[1]).click()
+                base_operate.click_element(self.driver, base_page.login_btn)
                 time.sleep(3)
                 if self.driver.find_element(login_page.quick_login[0], login_page.quick_login[1]):
-                    self.driver.find_element(login_page.agree_agreement[0], login_page.agree_agreement[1]).click()
+                    base_operate.click_element(self.driver, login_page.agree_agreement)
                     time.sleep(1)
-                    self.driver.find_element(login_page.quick_login[0], login_page.quick_login[1]).click()
+                    base_operate.click_element(self.driver, login_page.quick_login)
                 else:
                     time.sleep(3)
-                    self.driver.find_element(login_page.other_login[0], login_page.other_login[1]).click()
+                    base_operate.click_element(self.driver, login_page.other_login)
                     time.sleep(1)
-                    self.driver.find_element(login_page.login_by_password[0], login_page.login_by_password[1]).click()
+                    base_operate.click_element(self.driver, login_page.login_by_password)
                     time.sleep(3)
-                    user_name = self.driver.find_element(login_page.user_name_btn[0], login_page.user_name_btn[1])
+                    user_name = base_operate.get_element(self.driver, login_page.user_name_btn)
                     user_name.click()
                     os.system('adb shell input text {}'.format('17338123926'))
                     time.sleep(2)
-                    password = self.driver.find_element(login_page.password_btn[0], login_page.password_btn[1])
+                    password = base_operate.get_element(self.driver, login_page.password_btn)
                     password.click()
                     os.system('adb shell input text {}'.format('123456'))
-                    self.driver.find_element(login_page.login_btn[0], login_page.login_btn[1]).click()
-
-
+                    base_operate.click_element(self.driver, login_page.login_btn)
+                    time.sleep(2)
+                    # 判断登录后,页面没有登录文字
+                    assert  base_operate.is_element_exist(self.driver,"登录"),False
         finally:
             self.driver.close_app()

@@ -27,14 +27,14 @@ class test_article_share(unittest.TestCase):
 
     def test_share_article(self):
         try:
-            self.driver.find_element(base_page.tab_zx[0], base_page.tab_zx[1]).click()
+            # 点击资讯tab
+            base_operate.click_element(self.driver, base_page.tab_zx)
             time.sleep(1)
             base_operate.swipe_down(self.driver)
-
-            self.driver.find_element(zx_page.hot_list[0], zx_page.hot_list[1]).find_element(
-                zx_page.hot_list_first[0], zx_page.hot_list_first[1]).click()
+            base_operate.click_elements(self.driver, zx_page.hot_list, zx_page.hot_list_first)
             time.sleep(2)
-            self.driver.find_elements(zx_page.share_btn[0], zx_page.share_btn[1])[1].click()
+            # 点击分享按钮
+            base_operate.click_element(self.driver,zx_page.share_btn)
             time.sleep(3)
             assert is_element_exist(self.driver, '分享/收藏'), True
         finally:

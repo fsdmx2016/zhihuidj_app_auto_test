@@ -25,13 +25,15 @@ class Video_Case(unittest.TestCase):
     # 视频类型进入到视频详情页播放
     def test_video_lock(self):
         try:
-            self.driver.find_element(base_page.tab_jy[0], base_page.tab_jy[1]).click()
+            # 点击交易按钮
+            base_operate.click_element(self.driver, base_page.tab_jy)
             time.sleep(1)
-            # 滑动三次保证元素被找到
+            # 滑动两次保证元素被找到
             base_operate.swipe_down(self.driver)
             base_operate.swipe_down(self.driver)
-            self.driver.find_element(transaction_page.video_region[0], transaction_page.video_region[1]).find_element(
-                transaction_page.live_broadcast_btn[0], transaction_page.live_broadcast_btn[1]).click()
+            # 点击视频按钮进入播放
+            base_operate.click_elements(self.driver, transaction_page.video_region,transaction_page.live_broadcast_btn)
+
             time.sleep(3)
             is_enter = base_operate.is_element_exist(self.driver, '课程简介')
             assert is_enter, True

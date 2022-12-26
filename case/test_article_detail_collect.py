@@ -24,12 +24,13 @@ class article_detail(unittest.TestCase):
     # 进入文章详情、收藏文章
     def test_enter_detail_collect(self):
         try:
-            base_operate.enter_home(self.driver)
-            self.driver.find_element(base_page.tab_zx[0], base_page.tab_zx[1]).click()
+            # 点击资讯tab
+            base_operate.click_element(self.driver, base_page.tab_zx)
             time.sleep(1)
-            self.driver.find_element(zx_page.hy_zixun[0], zx_page.hy_zixun[1]).click()
+            # 点击行业资讯
+            base_operate.click_element(self.driver, zx_page.hy_zixun)
             time.sleep(2)
-
-            self.driver.find_element(zx_page.collect[0], zx_page.collect[1]).click()
+            # 点击收藏按钮
+            base_operate.click_element(self.driver, zx_page.collect)
         finally:
             self.driver.close_app()

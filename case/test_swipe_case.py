@@ -23,6 +23,6 @@ class Swipe_Case(unittest.TestCase):
     def test_swipe(self):
         try:
             base_operate.swipe_down(self.driver)
-            base_operate.swip_left(self.driver)
+            base_operate.swipe_left(self.driver)
         finally:
             self.driver.close_app()

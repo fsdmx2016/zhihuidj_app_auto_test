@@ -30,7 +30,7 @@ def swipe_down(driver):
     time.sleep(1)
 
 
-def swip_left(driver):
+def swipe_left(driver):
     l = getSize(driver)
     x1 = int(l[0] * 0.75)
     x2 = int(l[0] * 0.25)
@@ -90,7 +90,21 @@ def is_element_exist(driver, element):
     else:
         return False
 
+
 # 等待元素出现，默认等待5s
 def wait_element_appear(driver, search_type, search_value):
     WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((search_type, search_value)))
+
+# 元素点击
+def click_element(driver, element_value):
+    return driver.find_element(element_value[0], element_value[1]).click()
+
+# 获取元素
+def get_element(driver, element_value):
+    return driver.find_element(element_value[0], element_value[1])
+
+# 点击元素-父子关系
+def click_elements(driver, element_value, child_element_value):
+    return driver.find_element(element_value[0], element_value[1]).find_element(
+        child_element_value[0], child_element_value[1]).click()
