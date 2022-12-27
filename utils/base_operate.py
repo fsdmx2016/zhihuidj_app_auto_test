@@ -65,7 +65,8 @@ def base_login(driver):
         click_element(driver, base_page.login_btn)
         time.sleep(3)
         # 如果有一键登录按钮,则同意协议，并点击一键登录按钮
-        if driver.find_element(login_page.quick_login[0], login_page.quick_login[1]):
+        if is_element_exist(driver,'其他方式登录'):
+        # if driver.find_element(login_page.quick_login[0], login_page.quick_login[1]):
             click_element(driver, login_page.agree_agreement)
             time.sleep(1)
             click_element(driver, login_page.quick_login)

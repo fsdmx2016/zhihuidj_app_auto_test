@@ -22,15 +22,15 @@ class Test_Login(unittest.TestCase):
 
     def test_login(self):
         base_operate.base_login(self.driver)
-
         try:
+            time.sleep(2)
             # 如果登录按钮存在,则走登录逻辑
             if base_operate.is_element_exist(self.driver, '登录'):
                 # 点击登录按钮
                 base_operate.click_element(self.driver, base_page.login_btn)
                 time.sleep(3)
                 # 如果有一键登录按钮,则同意协议，并点击一键登录按钮
-                if self.driver.find_element(login_page.quick_login[0], login_page.quick_login[1]):
+                if base_operate.is_element_exist(self.driver, '其他方式登录'):
                     base_operate.click_element(self.driver, login_page.agree_agreement)
                     time.sleep(1)
                     base_operate.click_element(self.driver, login_page.quick_login)
