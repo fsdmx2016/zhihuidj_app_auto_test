@@ -34,8 +34,9 @@ class Test_Login(unittest.TestCase):
                     base_operate.click_element(self.driver, login_page.quick_login)
                 else:
                     time.sleep(3)
-                    base_operate.click_element(self.driver, login_page.other_login)
-                    time.sleep(1)
+                    # 如果不插入手机卡,则直接通过密码登录
+                    # base_operate.click_element(self.driver, login_page.other_login)
+                    # time.sleep(1)
                     base_operate.click_element(self.driver, login_page.login_by_password)
                     time.sleep(3)
                     user_name = base_operate.get_element(self.driver, login_page.user_name_btn)
