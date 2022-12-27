@@ -9,7 +9,6 @@
 import os
 
 from selenium.webdriver.common.by import By
-
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -50,8 +49,9 @@ def getSize(driver):
 def enter_home(driver):
     if is_element_exist(driver, '同意'):
         driver.find_element(By.ID, 'm_tv_right').click()
+    time.sleep(2)
     if is_element_exist(driver, '下次再说'):
-        driver.find_element(base_page.skip_update[0], base_page.skip_update[1]).click()
+        click_element(driver, base_page.skip_update)
     time.sleep(4)
 
 
@@ -96,15 +96,22 @@ def wait_element_appear(driver, search_type, search_value):
     WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((search_type, search_value)))
 
+
 # 元素点击
 def click_element(driver, element_value):
-    return driver.find_element(element_value[0], element_value[1]).click()
+    driver.find_element(element_value[0], element_value[1]).click()
+
 
 # 获取元素
 def get_element(driver, element_value):
     return driver.find_element(element_value[0], element_value[1])
 
+
 # 点击元素-父子关系
 def click_elements(driver, element_value, child_element_value):
-    return driver.find_element(element_value[0], element_value[1]).find_element(
+    driver.find_element(element_value[0], element_value[1]).find_element(
         child_element_value[0], child_element_value[1]).click()
+
+# 点击元素列表的第N个
+def click_elements_index(driver, element_value,index):
+    driver.find_elements(element_value[0],element_value[1])[index].click()

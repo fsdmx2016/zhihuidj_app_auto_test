@@ -26,6 +26,7 @@ class test_remark(unittest.TestCase):
         cls.driver = base_config.init_driver()
 
     def test_send_report(self):
+        base_operate.base_login(self.driver)
         try:
             # 点击资讯tab
             base_operate.click_element(self.driver, base_page.tab_zx)

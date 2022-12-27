@@ -1,6 +1,5 @@
 import os
 import unittest
-# 一定要导入，要不然报错
 import time
 from unittestreport import TestRunner
 

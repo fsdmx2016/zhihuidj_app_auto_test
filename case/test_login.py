@@ -20,9 +20,10 @@ class Test_Login(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = base_config.init_driver()
-        base_operate.base_login(cls.driver)
 
     def test_login(self):
+        base_operate.base_login(self.driver)
+
         try:
             if base_operate.is_element_exist(self.driver, '登录'):
                 base_operate.click_element(self.driver, base_page.login_btn)

@@ -23,18 +23,20 @@ class test_article_share(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = base_config.init_driver()
-        base_operate.base_login(cls.driver)
 
     def test_share_article(self):
+        base_operate.base_login(self.driver)
+
         try:
             # 点击资讯tab
             base_operate.click_element(self.driver, base_page.tab_zx)
             time.sleep(1)
             base_operate.swipe_down(self.driver)
+            time.sleep(2)
             base_operate.click_elements(self.driver, zx_page.hot_list, zx_page.hot_list_first)
             time.sleep(2)
             # 点击分享按钮
-            base_operate.click_element(self.driver,zx_page.share_btn)
+            base_operate.click_elements_index(self.driver,zx_page.share_btn,1)
             time.sleep(3)
             assert is_element_exist(self.driver, '分享/收藏'), True
         finally:

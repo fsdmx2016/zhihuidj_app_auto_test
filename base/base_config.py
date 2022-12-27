@@ -23,7 +23,7 @@ def init_driver():
     dict['platformVersion'] = platformVersion
     dict['deviceName'] = deviceName
     dict['app'] = apk_path
-    # dict['automationName'] = 'UIAutomator2'
+    dict['automationName'] = 'UIAutomator2'
     dict['noReset'] = True
     dict[
         'appPackage'] = appPackage

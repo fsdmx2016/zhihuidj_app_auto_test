@@ -18,9 +18,9 @@ class Swipe_Case(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = base_config.init_driver()
-        base_operate.base_login(cls.driver)
 
     def test_swipe(self):
+        base_operate.base_login(self.driver)
         try:
             base_operate.swipe_down(self.driver)
             base_operate.swipe_left(self.driver)
