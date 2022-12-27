@@ -25,7 +25,9 @@ class Test_Login(unittest.TestCase):
         base_operate.base_login(self.driver)
 
         try:
+            # 如果登录按钮存在,则走登录逻辑
             if base_operate.is_element_exist(self.driver, '登录'):
+                # 点击登录按钮
                 base_operate.click_element(self.driver, base_page.login_btn)
                 time.sleep(3)
                 # 如果有一键登录按钮,则同意协议，并点击一键登录按钮
@@ -58,6 +60,6 @@ class Test_Login(unittest.TestCase):
                     base_operate.click_element(self.driver, login_page.login_btn)
                     time.sleep(3)
                     # 判断登录后,页面没有登录文字
-                    assert  base_operate.is_element_exist(self.driver,"登录"),False
+                    assert base_operate.is_element_exist(self.driver, "登录"), False
         finally:
             self.driver.close_app()
