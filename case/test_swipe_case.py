@@ -25,4 +25,4 @@ class Swipe_Case(unittest.TestCase):
             base_operate.swipe_down(self.driver)
             base_operate.swipe_left(self.driver)
         finally:
-            self.driver.close_app()
+            self.driver.quit()

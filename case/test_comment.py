@@ -44,4 +44,4 @@ class test_remark(unittest.TestCase):
             time.sleep(1)
             assert is_element_exist(self.driver, current_time), True
         finally:
-            self.driver.close_app()
+            self.driver.quit()

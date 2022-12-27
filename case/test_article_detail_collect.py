@@ -15,7 +15,7 @@ from utils import base_operate
 
 
 # 文章收藏
-class article_detail(unittest.TestCase):
+class Test_article_detail(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = base_config.init_driver()
@@ -26,11 +26,12 @@ class article_detail(unittest.TestCase):
         try:
             # 点击资讯tab
             base_operate.click_element(self.driver, base_page.tab_zx)
-            time.sleep(1)
+            time.sleep(2)
             # 点击行业资讯
             base_operate.click_element(self.driver, zx_page.hy_zixun)
             time.sleep(2)
             # 点击收藏按钮
             base_operate.click_element(self.driver, zx_page.collect)
+            time.sleep(3)
         finally:
-            self.driver.close_app()
+            self.driver.quit()

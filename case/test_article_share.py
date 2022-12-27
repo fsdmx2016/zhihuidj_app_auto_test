@@ -34,10 +34,10 @@ class test_article_share(unittest.TestCase):
             base_operate.swipe_down(self.driver)
             time.sleep(2)
             base_operate.click_elements(self.driver, zx_page.hot_list, zx_page.hot_list_first)
-            time.sleep(2)
+
             # 点击分享按钮
             base_operate.click_elements_index(self.driver,zx_page.share_btn,1)
             time.sleep(3)
             assert is_element_exist(self.driver, '分享/收藏'), True
         finally:
-            self.driver.close_app()
+            self.driver.quit()

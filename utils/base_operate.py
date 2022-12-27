@@ -58,28 +58,38 @@ def enter_home(driver):
 # 前置登录
 def base_login(driver):
     enter_home(driver)
-    # 如果登录按钮存在,则登录账号
+    # 如果登录按钮存在,则走登录逻辑
     if is_element_exist(driver, '登录'):
-        driver.find_element(base_page.login_btn[0], base_page.login_btn[1]).click()
+        time.sleep(1)
+        # 点击登录按钮
+        click_element(driver, base_page.login_btn)
         time.sleep(3)
+        # 如果有一键登录按钮,则同意协议，并点击一键登录按钮
         if driver.find_element(login_page.quick_login[0], login_page.quick_login[1]):
-            driver.find_element(login_page.agree_agreement[0], login_page.agree_agreement[1]).click()
+            click_element(driver, login_page.agree_agreement)
             time.sleep(1)
-            driver.find_element(login_page.quick_login[0], login_page.quick_login[1]).click()
+            click_element(driver, login_page.quick_login)
+            time.sleep(3)
         else:
             time.sleep(3)
-            driver.find_element(login_page.other_login[0], login_page.other_login[1]).click()
-            time.sleep(1)
-            driver.find_element(login_page.login_by_password[0], login_page.login_by_password[1]).click()
+            # 如果不插入手机卡,则直接通过密码登录
+            # base_operate.click_element(self.driver, login_page.other_login)
+            # time.sleep(1)
+            # 切换到密码登录
+            click_element(driver, login_page.login_by_password)
             time.sleep(3)
-            user_name = driver.find_element(login_page.user_name_btn[0], login_page.user_name_btn[1])
+            # 找到用户名输入框
+            user_name = get_element(driver, login_page.user_name_btn)
             user_name.click()
             os.system('adb shell input text {}'.format('17338123926'))
             time.sleep(2)
-            password = driver.find_element(login_page.password_btn[0], login_page.password_btn[1])
+            # 找到密码输入框
+            password = get_element(driver, login_page.password_btn)
             password.click()
             os.system('adb shell input text {}'.format('123456'))
-            driver.find_element(login_page.login_btn[0], login_page.login_btn[1]).click()
+            # 点击登录按钮
+            click_element(driver, login_page.login_btn)
+            time.sleep(3)
 
 
 # 判断元素是否存在
@@ -91,7 +101,16 @@ def is_element_exist(driver, element):
         return False
 
 
-# 等待元素出现，默认等待5s
+def wait_element(driver, element_value):
+    # 循环5次,如果能找到元素,则退出,否则超过5s报错
+    for i in range(5):
+        if driver.find_element(element_value[0], element_value[1]):
+            break
+        time.sleep(1)
+        if i == 4:
+            raise Exception("5s元素" + element_value[1] + "依旧未找到！")
+
+
 def wait_element_appear(driver, search_type, search_value):
     WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((search_type, search_value)))
@@ -112,6 +131,7 @@ def click_elements(driver, element_value, child_element_value):
     driver.find_element(element_value[0], element_value[1]).find_element(
         child_element_value[0], child_element_value[1]).click()
 
+
 # 点击元素列表的第N个
-def click_elements_index(driver, element_value,index):
-    driver.find_elements(element_value[0],element_value[1])[index].click()
+def click_elements_index(driver, element_value, index):
+    driver.find_elements(element_value[0], element_value[1])[index].click()

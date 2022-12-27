@@ -10,7 +10,6 @@ import os
 import time
 from base import base_config
 import unittest
-from selenium.webdriver.common.by import By
 from utils import base_operate
 from page import base_page, login_page
 
@@ -62,4 +61,4 @@ class Test_Login(unittest.TestCase):
                     # 判断登录后,页面没有登录文字
                     assert base_operate.is_element_exist(self.driver, "登录"), False
         finally:
-            self.driver.close_app()
+            self.driver.quit()

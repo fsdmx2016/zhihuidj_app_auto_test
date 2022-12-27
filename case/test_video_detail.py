@@ -31,11 +31,10 @@ class Video_Case(unittest.TestCase):
             # 滑动两次保证元素被找到
             base_operate.swipe_down(self.driver)
             base_operate.swipe_down(self.driver)
-            time.sleep(2)
             # 点击视频按钮进入播放
             base_operate.click_elements(self.driver, transaction_page.video_region, transaction_page.live_broadcast_btn)
             time.sleep(3)
             is_enter = base_operate.is_element_exist(self.driver, '课程简介')
             assert is_enter, True
         finally:
-            self.driver.close_app()
+            self.driver.quit()
