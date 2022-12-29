@@ -8,6 +8,9 @@
 """
 import os
 import time
+
+from selenium.webdriver.common.by import By
+
 from base import base_config
 import unittest
 from utils import base_operate
@@ -46,6 +49,9 @@ class Test_Login(unittest.TestCase):
                     # 切换到密码登录
                     base_operate.click_element(self.driver, login_page.login_by_password)
                     time.sleep(3)
+                    # data=self.driver.find_element(By.XPATH,'//android.widget.EditText[contains(@index,1)]')
+                    # data.click()
+                    # data.press_keycode(8)
                     # 找到用户名输入框
                     user_name = base_operate.get_element(self.driver, login_page.user_name_btn)
                     user_name.click()

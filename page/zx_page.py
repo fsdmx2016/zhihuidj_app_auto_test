@@ -24,3 +24,9 @@ hy_zixun = [By.XPATH, '//android.view.View[@content-desc="行业资讯"]']
 collect = [By.XPATH, '//android.widget.ImageView[contains(@index,5)]']
 # 分享按钮
 share_btn=[By.CLASS_NAME, 'android.widget.ImageView']
+# 详情评论按钮
+detail_comment=[By.XPATH, '//android.widget.ImageView[@content-desc="写评论..."]']
+# 详情评论输入框
+detail_comment_edit=[By.XPATH, '//android.widget.ImageView[@text="写评论..."]']
+# 评论按钮
+send_comment=[By.XPATH, '//android.view.View[@content-desc="发送"]']
